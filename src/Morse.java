@@ -5,15 +5,21 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Morse {
 	
-	public static String Morsifiy(String text){
+	public static String MorsifiyForSound(String text){
 		String converted = convertToMorseCode(text);
+		return converted;
+	}
+	
+	public static String MorsifiyForText(String text){
+		String converted = convertToMorseCode(text);
+		converted = converted.replaceAll(",", "/ ");
 		return converted;
 	}
 	
 	public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException{
 		try {
 			System.out.println("Translating: " + args[0]);
-			String morseCode = Morsifiy(args[0]);
+			String morseCode = MorsifiyForSound(args[0]);
 			System.out.println(morseCode);
 			Sound.morseToSound(morseCode);
 		} catch(IndexOutOfBoundsException e){
